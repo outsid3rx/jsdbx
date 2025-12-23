@@ -1,0 +1,17 @@
+{
+  "name": "jsdbx",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-kit": "^11.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.9.3"
+  }
+}

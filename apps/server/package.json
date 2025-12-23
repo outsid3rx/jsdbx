@@ -1,0 +1,24 @@
+{
+  "name": "@jsdbx/server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint 'src/**/*.{js,jsx}' --fix"
+  },
+  "dependencies": {
+    "@jsdbx/pragma": "*",
+    "h3": "^2.0.1-rc.6",
+    "nanoid": "^5.1.6",
+    "valibot": "^1.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/plugin-transform-react-jsx": "^7.27.1",
+    "@rollup/plugin-babel": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.54.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@jsdbx/pragma",
+  "version": "1.0.0",
+  "main": "./dist/index.mjs",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsdown",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --fix"
+  },
+  "devDependencies": {
+    "tsdown": "^0.18.2"
+  },
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.mts"
+}
