@@ -2,7 +2,7 @@ export interface ISelectProps {
   fields: '*' | string[]
 }
 
-export interface IFromProps<Tables extends string> {
+export interface IFromProps<Tables extends string = string> {
   table: Tables
 }
 
@@ -35,51 +35,17 @@ export interface IValueProps {
   value: string | number
 }
 
-export const Select = (props: ISelectProps) => {
-  return {
-    type: 'select',
+function createComponent<T extends object>(type: string) {
+  return (props: T) => ({
+    type,
     props,
-  }
+  })
 }
 
-export const From = <T extends string = string>(props: IFromProps<T>) => {
-  return {
-    type: 'from',
-    props,
-  }
-}
-
-export const Where = (props: IWhereProps) => {
-  return {
-    type: 'where',
-    props,
-  }
-}
-
-export const CreateTable = (props: ICreateTableProps) => {
-  return {
-    type: 'create-table',
-    props,
-  }
-}
-
-export const Field = (props: IFieldProps) => {
-  return {
-    type: 'field',
-    props,
-  }
-}
-
-export const Insert = (props: IInsertProps) => {
-  return {
-    type: 'insert',
-    props,
-  }
-}
-
-export const Value = (props: IValueProps) => {
-  return {
-    type: 'value',
-    props,
-  }
-}
+export const Select = createComponent<ISelectProps>('select')
+export const From = createComponent<IFromProps>('from')
+export const Where = createComponent<IWhereProps>('where')
+export const CreateTable = createComponent<ICreateTableProps>('create-table')
+export const Field = createComponent<IFieldProps>('field')
+export const Insert = createComponent<IInsertProps>('insert')
+export const Value = createComponent<IValueProps>('value')
