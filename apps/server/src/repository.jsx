@@ -1,4 +1,14 @@
-import { build, From, jsdbxPragma as _h, Select, Where } from '@jsdbx/pragma'
+import {
+  build,
+  CreateTable,
+  Field,
+  From,
+  Insert,
+  jsdbxPragma as _h,
+  Select,
+  Value,
+  Where,
+} from '@jsdbx/pragma'
 import { nanoid } from 'nanoid'
 import { DatabaseSync } from 'node:sqlite'
 
@@ -8,20 +18,27 @@ export class Repository {
   }
 
   init() {
-    this.db.exec(`
-      CREATE TABLE IF NOT EXISTS links (
-        hash TEXT PRIMARY KEY,
-        url  TEXT NOT NULL
-      );
-    `)
+    this.db.exec(
+      build(
+        <CreateTable name="links" ifNotExists>
+          <Field name="hash" type="TEXT" constraints={['PRIMARY KEY']} />
+          <Field name="url" type="TEXT" constraints={['NOT NULL']} />
+        </CreateTable>,
+      ),
+    )
   }
 
   addLink(link) {
-    const insert = this.db.prepare(
-      'INSERT INTO links (hash, url) VALUES (?, ?)',
-    )
     const hash = nanoid(6)
-    insert.run(hash, link)
+
+    this.db.exec(
+      build(
+        <Insert name="links" fields={['hash', 'url']}>
+          <Value value={hash} />
+          <Value value={link} />
+        </Insert>,
+      ),
+    )
 
     return hash
   }
@@ -29,7 +46,7 @@ export class Repository {
   getLink(hash) {
     const query = this.db.prepare(
       build(
-        <Select fields="*">
+        <Select fields={['url']}>
           <From table="links" />
           <Where assert={{ hash: { operator: '=', value: hash } }} />
         </Select>,

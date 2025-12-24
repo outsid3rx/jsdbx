@@ -15,6 +15,26 @@ export interface IWhereProps {
   }
 }
 
+export interface ICreateTableProps {
+  name: string
+  ifNotExists?: boolean
+}
+
+export interface IFieldProps {
+  name: string
+  type: string
+  constraints: string[]
+}
+
+export interface IInsertProps {
+  name: string
+  fields: string[]
+}
+
+export interface IValueProps {
+  value: string | number
+}
+
 export const Select = (props: ISelectProps) => {
   return {
     type: 'select',
@@ -32,6 +52,34 @@ export const From = <T extends string = string>(props: IFromProps<T>) => {
 export const Where = (props: IWhereProps) => {
   return {
     type: 'where',
+    props,
+  }
+}
+
+export const CreateTable = (props: ICreateTableProps) => {
+  return {
+    type: 'create-table',
+    props,
+  }
+}
+
+export const Field = (props: IFieldProps) => {
+  return {
+    type: 'field',
+    props,
+  }
+}
+
+export const Insert = (props: IInsertProps) => {
+  return {
+    type: 'insert',
+    props,
+  }
+}
+
+export const Value = (props: IValueProps) => {
+  return {
+    type: 'value',
     props,
   }
 }

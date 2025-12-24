@@ -1,9 +1,17 @@
 import {
+  CreateTable,
+  Field,
   From,
+  ICreateTableProps,
+  IFieldProps,
   IFromProps,
+  IInsertProps,
+  Insert,
   ISelectProps,
+  IValueProps,
   IWhereProps,
   Select,
+  Value,
   Where,
 } from './components'
 
@@ -11,11 +19,19 @@ interface ComponentsMap {
   Select: typeof Select
   From: typeof From
   Where: typeof Where
+  CreateTable: typeof CreateTable
+  Field: typeof Field
+  Insert: typeof Insert
+  Value: typeof Value
 }
 interface ComponentsPropsMap {
   Select: ISelectProps
   From: IFromProps<string>
   Where: IWhereProps
+  CreateTable: ICreateTableProps
+  Field: IFieldProps
+  Insert: IInsertProps
+  Value: IValueProps
 }
 
 export const jsdbxPragma = {
@@ -30,4 +46,12 @@ export const jsdbxPragma = {
 }
 
 export { build } from './builder'
-export { From, Select, Where } from './components'
+export {
+  CreateTable,
+  Field,
+  From,
+  Insert,
+  Select,
+  Value,
+  Where,
+} from './components'
